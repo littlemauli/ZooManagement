@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+//using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using ZooManagement.Repositories;
@@ -25,15 +25,15 @@ namespace ZooManagement
 
         public IConfiguration Configuration { get; }
 
-        public static readonly ILoggerFactory
-        LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => { builder.AddConsole(); });
+        // public static readonly ILoggerFactory
+        // LoggerFactory = Microsoft.Extensions.Logging.LoggerFactory.Create(builder => { builder.AddConsole(); });
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
           services.AddDbContext<ZooManagementDbContext>(options =>
             {
-                options.UseLoggerFactory(LoggerFactory);
+               // options.UseLoggerFactory(LoggerFactory);
                 options.UseSqlite("Data Source=zoomanagement.db");
             });
             services.AddControllers();

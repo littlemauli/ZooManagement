@@ -14,6 +14,7 @@ namespace ZooManagement.Repositories
         Animal CreateAnimal(CreateAnimalRequest animal );
         Animal GetAnimalbyId(int id);
         // Animal Create(CreateAnimalRequest newAnimal);
+        IEnumerable<Animal> Search(AnimalSearchRequest searchRequest);
    
     }
 
@@ -43,6 +44,22 @@ namespace ZooManagement.Repositories
         {
             return _context.Animal
                 .SingleOrDefault(animal => animal.Id == id);
+        }
+
+        public IEnumerable<Animal> Search(AnimalSearchRequest search)
+        {
+            return _context.Animal
+                .Include(c => c.AnimalType)
+                .Where(p => search.Filters== null ||
+                            (
+                                p.AnimalName.ToLower().Contains(search.AnimalName) ||
+                                p.AnimalType.Species.ToLower().Contains(search.Species) ||
+                                p.AnimalType.AnimalClass.ToLower().Contains(search.AnimalClass) ||
+                                p.AnimalType.TypeName.ToLower().Contains(search.TypeName)
+                            ))
+                .OrderBy(u => u.AnimalType.Species)
+                .Skip((search.Page - 1) * search.PageSize)
+                .Take(search.PageSize);
         }
 
         
