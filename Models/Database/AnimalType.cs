@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Newtonsoft.Json;
 namespace ZooManagement.Models.Database
 {
     public class AnimalType
@@ -13,7 +15,8 @@ namespace ZooManagement.Models.Database
         public string Species { get; set; }
         public string AnimalClass { get; set; }
        
-        public ICollection<Animal> Posts { get; set; } = new List<Animal>();
+       [JsonIgnore]
+       public ICollection<Animal> Animals { get; set; } 
         
     }
 }

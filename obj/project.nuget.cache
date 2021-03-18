@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "D+MFw2gqYAprDoBuMIc14K5sZJta+WmeR5QTJD7FkPpJQbvUzyRpyucIq0x2pwqty/hLl9eLao0v3MQaHMAq+g==",
+  "dgSpecHash": "7mj18ADxQgl36L/UYxPVVyfr5zSTmNRBHhGr56XgKjTr9BNJ9rnRkihFdiXVuHe/K8YNlH//5aetXEfCjs1q+w==",
   "success": true,
   "projectFilePath": "C:\\Users\\roscha\\training\\ZooManagement\\ZooManagement.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\roscha\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.4\\microsoft.aspnetcore.jsonpatch.5.0.4.nupkg.sha512",
+    "C:\\Users\\roscha\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\5.0.4\\microsoft.aspnetcore.mvc.newtonsoftjson.5.0.4.nupkg.sha512",
+    "C:\\Users\\roscha\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\roscha\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.4\\microsoft.data.sqlite.core.5.0.4.nupkg.sha512",
     "C:\\Users\\roscha\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\3.1.6\\microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",
     "C:\\Users\\roscha\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.4\\microsoft.entityframeworkcore.5.0.4.nupkg.sha512",
@@ -24,6 +27,8 @@
     "C:\\Users\\roscha\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\roscha\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\roscha\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\roscha\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\roscha\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\roscha\\.nuget\\packages\\nlog\\4.7.8\\nlog.4.7.8.nupkg.sha512",
     "C:\\Users\\roscha\\.nuget\\packages\\nlog.extensions.logging\\1.7.1\\nlog.extensions.logging.1.7.1.nupkg.sha512",
     "C:\\Users\\roscha\\.nuget\\packages\\nlog.web.aspnetcore\\4.11.0\\nlog.web.aspnetcore.4.11.0.nupkg.sha512",

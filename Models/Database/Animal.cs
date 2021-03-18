@@ -20,6 +20,8 @@ namespace ZooManagement.Models.Database
         public DateTime AquisitionDate { get; set; }
         
         public DateTime DOB {get; set;}
+
+        public 
         
     }
 }

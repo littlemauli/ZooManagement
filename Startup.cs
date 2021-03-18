@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using ZooManagement.Repositories;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace ZooManagement
 {
@@ -36,8 +38,8 @@ namespace ZooManagement
                // options.UseLoggerFactory(LoggerFactory);
                 options.UseSqlite("Data Source=zoomanagement.db");
             });
-            services.AddControllers();
-
+            // services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore );
 
             services.AddTransient<IAnimalRepo, AnimalRepo>();
             services.AddTransient<IAnimalTypeRepo, AnimalTypeRepo>();
