@@ -16,7 +16,7 @@ namespace ZooManagement.Models.Database
         public string EnclosureName { get; set; }
         public int EnclosureCapacity { get; set; }
       
-        // [JsonIgnore]
+        [JsonIgnore]
         public ICollection<Animal> Animals { get; set; } 
     }
 }

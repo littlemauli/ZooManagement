@@ -15,7 +15,7 @@ namespace ZooManagement.Models.Database
         public string Species { get; set; }
         public string AnimalClass { get; set; }
        
-    //    [JsonIgnore]
+       [JsonIgnore]
        public ICollection<Animal> Animals { get; set; } 
         
     }

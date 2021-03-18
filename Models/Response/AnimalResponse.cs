@@ -14,7 +14,7 @@ namespace ZooManagement.Models.Response
         }
 
         public int Id => _animal.Id;
-        public int AnimalType_id => _animal.AnimalType_id;
+        public int AnimalType_id => _animal.AnimalType_Id;
         public string AnimalName => _animal.AnimalName;
         public string Sex => _animal.Sex;
         public DateTime AquisitionDate => _animal.AquisitionDate;

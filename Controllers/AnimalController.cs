@@ -60,7 +60,7 @@ namespace ZooManagement.Controllers
             if (animaltypeSelect != null)
             {
                 CreateAnimalRequest animal = new CreateAnimalRequest();
-                animal.AnimalType_id = animaltypeSelect.Id;
+                animal.AnimalType_Id = animaltypeSelect.Id;
                 animal.AnimalName = newAnimal.AnimalName;
                 animal.Sex = newAnimal.Sex;
                 animal.AquisitionDate = newAnimal.AquisitionDate;
@@ -78,7 +78,7 @@ namespace ZooManagement.Controllers
                 var animaltypecreated = _animaltypes.CreateAnimalType(animaltype);
 
                 CreateAnimalRequest animal = new CreateAnimalRequest();
-                animal.AnimalType_id = animaltypecreated.Id;
+                animal.AnimalType_Id = animaltypecreated.Id;
                 animal.AnimalName = newAnimal.AnimalName;
                 animal.Sex = newAnimal.Sex;
                 animal.AquisitionDate = newAnimal.AquisitionDate;
