@@ -10,5 +10,7 @@ namespace ZooManagement
         public DbSet<AnimalType> AnimalType { get; set; }
         public DbSet<Animal> Animal { get; set; }
 
+        public DbSet<Enclosure> Enclosure { get; set; }
+
     }
 }

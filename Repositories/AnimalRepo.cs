@@ -30,7 +30,7 @@ namespace ZooManagement.Repositories
         {
              var insertResponse = _context.Animal.Add(new Animal
             {
-                AnimalType_id = animal.AnimalType_id,
+                AnimalType_Id = animal.AnimalType_Id,
                 AnimalName = animal.AnimalName,
                 Sex = animal.Sex,
                 AquisitionDate = animal.AquisitionDate,

@@ -12,7 +12,7 @@ namespace ZooManagement.Models.Database
         public int Id { get; set; }
 
         [ForeignKey("AnimalType")]
-        public int AnimalType_id { get; set; }
+        public int AnimalType_Id { get; set; }
         public AnimalType AnimalType { get; set; }
         
         public string AnimalName { get; set; }
@@ -20,8 +20,10 @@ namespace ZooManagement.Models.Database
         public DateTime AquisitionDate { get; set; }
         
         public DateTime DOB {get; set;}
-
-        public 
+        
+        [ForeignKey("Enclosure")]
+        public int Enclosure_Id {get; set;}
+        public Enclosure Enclosure { get; set; }
         
     }
 }
