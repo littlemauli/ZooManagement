@@ -26,6 +26,8 @@ namespace ZooManagement.Controllers
         private readonly IAnimalRepo _animals;
         private readonly IAnimalTypeRepo _animaltypes;
 
+        private readonly IEnclosureRepo _enclosures;
+
         // private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
        // private readonly ILogger<AnimalController> _logger;
 
@@ -35,10 +37,11 @@ namespace ZooManagement.Controllers
         //     _logger.LogDebug(1, "NLog injected into AnimalController");
         // }
 
-        public AnimalController(IAnimalRepo animals, IAnimalTypeRepo animaltypes)
+        public AnimalController(IAnimalRepo animals, IAnimalTypeRepo animaltypes, IEnclosureRepo enclosures)
         {
             _animals = animals;
             _animaltypes = animaltypes;
+            _enclosures = enclosures;
         }
 
         [HttpPost("create")]
@@ -54,46 +57,70 @@ namespace ZooManagement.Controllers
             // if yes, insert only to animal using animal object
             // else insert to animal type and then animal 
 
+            //do a select on enclosure and animal tables. 
+            // o/p make a list of enclosure id, max capacity 
+            // and current capacity (the count of animals for each enclosure id)
+            // assign the first available enclosure if with space to the animal being created
+//<List of enclosure respose, enclosure list response>
+// id, max count, current capacity(count on animal table)
+// read the list, find the first available enclosure. current<max assign that to EEE = 2
+//
+            var e =_enclosures.GetEnclosureList();
+            int Enclosuretouse = 0;
+            foreach(EnclosureResponse enc in e.EnclosureList)
+            {
+                if(enc.EnclosureCurrentFill<enc.EnclosureCapacity)
+                {
+                    Enclosuretouse = enc.Enclosure_Id;
+                    break;
+                }
+            }
+            if (Enclosuretouse !=0)
+            {
+                var animaltypeSelect = _animaltypes.GetAnimalTypebyName(newAnimal.TypeName);
+                Animal animalcreated;
+                if (animaltypeSelect != null)
+                {
+                    CreateAnimalRequest animal = new CreateAnimalRequest();
+                    animal.AnimalType_Id = animaltypeSelect.Id;
+                    animal.AnimalName = newAnimal.AnimalName;
+                    animal.Sex = newAnimal.Sex;
+                    animal.AquisitionDate = newAnimal.AquisitionDate;
+                    animal.DOB = newAnimal.DOB;
+                    animalcreated = _animals.CreateAnimal(animal,Enclosuretouse);
+                }
+                else
+                {
+                    //populate a createanimaltype animaltype and send it to repo.
+                    // insert into animal type
+                    CreateAnimalTypeRequest animaltype = new CreateAnimalTypeRequest();
+                    animaltype.TypeName = newAnimal.TypeName;
+                    animaltype.Species = newAnimal.Species;
+                    animaltype.AnimalClass = newAnimal.AnimalClass;
+                    var animaltypecreated = _animaltypes.CreateAnimalType(animaltype);
 
-            var animaltypeSelect = _animaltypes.GetAnimalTypebyName(newAnimal.TypeName);
-            Animal animalcreated;
-            if (animaltypeSelect != null)
-            {
-                CreateAnimalRequest animal = new CreateAnimalRequest();
-                animal.AnimalType_Id = animaltypeSelect.Id;
-                animal.AnimalName = newAnimal.AnimalName;
-                animal.Sex = newAnimal.Sex;
-                animal.AquisitionDate = newAnimal.AquisitionDate;
-                animal.DOB = newAnimal.DOB;
-                animalcreated = _animals.CreateAnimal(animal);
-            }
-            else
-            {
-                //populate a createanimaltype animaltype and send it to repo.
-                // insert into animal type
-                CreateAnimalTypeRequest animaltype = new CreateAnimalTypeRequest();
-                animaltype.TypeName = newAnimal.TypeName;
-                animaltype.Species = newAnimal.Species;
-                animaltype.AnimalClass = newAnimal.AnimalClass;
-                var animaltypecreated = _animaltypes.CreateAnimalType(animaltype);
+                    CreateAnimalRequest animal = new CreateAnimalRequest();
+                    animal.AnimalType_Id = animaltypecreated.Id;
+                    animal.AnimalName = newAnimal.AnimalName;
+                    animal.Sex = newAnimal.Sex;
+                    animal.AquisitionDate = newAnimal.AquisitionDate;
+                    animal.DOB = newAnimal.DOB;
+                    animalcreated = _animals.CreateAnimal(animal,Enclosuretouse);
 
-                CreateAnimalRequest animal = new CreateAnimalRequest();
-                animal.AnimalType_Id = animaltypecreated.Id;
-                animal.AnimalName = newAnimal.AnimalName;
-                animal.Sex = newAnimal.Sex;
-                animal.AquisitionDate = newAnimal.AquisitionDate;
-                animal.DOB = newAnimal.DOB;
-                animalcreated = _animals.CreateAnimal(animal);
-
+                }
+                if (animalcreated == null)
+                {
+                    return StatusCode(401);
+                }
+                else
+                {
+                    return StatusCode(200);
+                }
             }
-            if (animalcreated == null)
-            {
-                return StatusCode(401);
+            else{
+                return BadRequest(" the enclosures are full");
             }
-            else
-            {
-                return StatusCode(200);
-            }
+        
         }
 
         [HttpGet("{id}")]
@@ -125,6 +152,14 @@ namespace ZooManagement.Controllers
             AnimalAllListResponse animalSearchResult = new AnimalAllListResponse(animals);
             return animalSearchResult;
         }
+
+        // [HttpGet("enclosures")]
+        // public ActionResult<EnclosureListResponse> GetEnclosureList()
+        // {
+        //    var enclosureList =_enclosures.GetEnclosureList();
+        //    return enclosureList;
+
+        // }
 
 }
 }

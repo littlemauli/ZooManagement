@@ -14,6 +14,8 @@ namespace ZooManagement.Models.Request
         
         public DateTime DOB {get; set;}
 
+        
+
 
     }
 }

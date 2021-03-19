@@ -17,7 +17,7 @@ namespace ZooManagement.Data
     private static IList<IList<string>> _data = new List<IList<string>>
         {
             new List<string> { "Lion Enclosure", "10"},
-            new List<string> { "Aviary", "50"},
+            new List<string> { "Aviary", "10"},
             new List<string> { "Reptile House", "40"},
             new List<string> { "Giraffe Enclosure", "6"},
             new List<string> { "Hippo Enclosure", "10"},

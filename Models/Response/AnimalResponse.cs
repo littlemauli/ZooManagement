@@ -20,6 +20,10 @@ namespace ZooManagement.Models.Response
         public DateTime AquisitionDate => _animal.AquisitionDate;
         public DateTime DOB => _animal.DOB;
 
+        public string EnclosureName =>_animal.Enclosure.EnclosureName;
+
+        public int Enclosure_Id => _animal.Enclosure_Id;
+
     }
 
 }

@@ -29,6 +29,10 @@ namespace ZooManagement.Models.Response
         public string TypeName => _animal.AnimalType.TypeName;
         public string Species => _animal.AnimalType.Species;
         public string AnimalClass => _animal.AnimalType.AnimalClass;
+
+        public string EnclosureName => _animal.Enclosure.EnclosureName;
+
+        public int Enclosure_Id => _animal.Enclosure_Id;
     }
 
 }

@@ -11,7 +11,7 @@ namespace ZooManagement.Repositories
 {
     public interface IAnimalRepo
     {
-        Animal CreateAnimal(CreateAnimalRequest animal );
+        Animal CreateAnimal(CreateAnimalRequest animal, int Enclosuretouse);
         Animal GetAnimalbyId(int id);
         // Animal Create(CreateAnimalRequest newAnimal);
         List<Animal> Search(AnimalSearchRequest searchRequest);
@@ -26,7 +26,7 @@ namespace ZooManagement.Repositories
         {
             _context = context;
         }
-        public Animal CreateAnimal(CreateAnimalRequest animal)
+        public Animal CreateAnimal(CreateAnimalRequest animal, int Enclosuretouse)
         {
              var insertResponse = _context.Animal.Add(new Animal
             {
@@ -35,6 +35,7 @@ namespace ZooManagement.Repositories
                 Sex = animal.Sex,
                 AquisitionDate = animal.AquisitionDate,
                 DOB = animal.DOB,
+                Enclosure_Id = Enclosuretouse,
             });
             _context.SaveChanges();
             return insertResponse.Entity;
@@ -63,6 +64,7 @@ namespace ZooManagement.Repositories
 
             var animal = _context.Animal
                 .Include(c => c.AnimalType)
+                .Include(a => a.Enclosure)
                 .AsQueryable();
             if (!String.IsNullOrEmpty(search.AnimalName)){
                 animal = animal.Where(s => s.AnimalName.ToLower().Contains(search.AnimalName.ToLower()));
@@ -87,7 +89,18 @@ namespace ZooManagement.Repositories
                 int num = -1 * search.Age ?? default(int);
                 animal = animal.Where(s => s.DOB > (DateTime.Now.AddYears(num-1)));
             }
-            
+
+            if (!String.IsNullOrEmpty(search.EnclosureName)){
+                animal = animal.Where(s => s.Enclosure.EnclosureName.ToLower().Contains(search.EnclosureName.ToLower()));
+            }
+
+            if(search.Enclosure_Id.HasValue){
+                animal = animal.Where(s => s.Enclosure_Id == (search.Enclosure_Id));
+            }
+            if (String.IsNullOrEmpty(search.Order))
+            {
+                search.Order = "";
+            }
             switch(search.Order.ToLower())    
             {
             default:
@@ -102,7 +115,12 @@ namespace ZooManagement.Repositories
             case "typename":
                 animal = animal.OrderBy(u => u.AnimalType.TypeName.AsQueryable() );
                 break;
-            }   
+            case "enclosure":
+                animal= animal.OrderBy(u=> u.Enclosure_Id);
+                animal = animal.OrderBy(a => a.AnimalName.AsQueryable());
+                            //   .ThenBy(a => a.AnimalName.AsQueryable());
+                break;
+            }
             var animalReturn = animal.Skip((search.Page - 1) * search.PageSize)
             .Take(search.PageSize)
             .ToList();

@@ -32,6 +32,9 @@ namespace ZooManagement.Models.Request
         public int? Age { get; set; }
 
         public string Order {get; set;}
+        public string EnclosureName {get;set;}
+
+        public int? Enclosure_Id {get;set;}
 
         // public override string Filters
         // {
