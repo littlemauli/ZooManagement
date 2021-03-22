@@ -13,6 +13,8 @@ namespace ZooManagement.Repositories
     public interface IZookeeperRepo
     {
         Zookeeper CreateZookeeper(CreateZookeeperRequest zookeeper);
+
+        ZookeeperResponse GetZookeeper(int id);
         // Animal GetAnimalbyId(int id);
         // // Animal Create(CreateAnimalRequest newAnimal);
         // List<Animal> Search(AnimalSearchRequest searchRequest);
@@ -47,15 +49,21 @@ namespace ZooManagement.Repositories
 
         }
 
-        public ZookeeperResponse GetZookeeeper(int id)
+        public ZookeeperResponse GetZookeeper(int id)
         {
-            ZookeeperResponse zookeeper = new ZookeeperResponse(); 
-            zookeeper =  _context.Zookeeper
-                .Include(e => e.Enclosures).ToList()
-                .Include(a => a.Animals).ToList()
+            ZookeeperResponse zookeeperRes = new ZookeeperResponse(); 
+            var  zookeeper =  _context.Zookeeper
+                .Include(e => e.Enclosures)
+                .Include(a => a.Animals)
                 .SingleOrDefault(z => z.Id == id);
 
-            return zookeeper;
+                zookeeperRes.Id=zookeeper.Id;
+                zookeeperRes.ZookeeperName = zookeeper.ZookeeperName;
+                zookeeperRes.ZookeeperSex = zookeeper.ZookeeperSex;
+                zookeeperRes.Enclosures = zookeeper.Enclosures.ToList();
+                zookeeperRes.Animals = zookeeper.Animals.ToList();
+
+            return zookeeperRes;
         }
 
         // public List<Animal> Search(AnimalSearchRequest search)

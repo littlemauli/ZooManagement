@@ -65,18 +65,14 @@ namespace ZooManagement.Controllers
                 {
                     return StatusCode(200);
                 }
-
-
-        
+       
         }
 
 
         [HttpGet("{id}")]
         public ActionResult<ZookeeperResponse> GetZookeeper([FromRoute] int id)
         {
-            var zookeeper = _zookeepers.Search(searchRequest);
-            AnimalAllListResponse animalSearchResult = new AnimalAllListResponse(animals);
-            return animalSearchResult;
+            return _zookeepers.GetZookeeper(id);
         }
 
 

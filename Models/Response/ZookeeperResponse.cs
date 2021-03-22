@@ -1,6 +1,7 @@
 ﻿using ZooManagement.Models.Database;
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 
 namespace ZooManagement.Models.Response
@@ -27,7 +28,6 @@ namespace ZooManagement.Models.Response
         public string ZookeeperSex { get; set;}
 
         public List<Enclosure> Enclosures { get; set;}
-
         public List<Animal> Animals { get; set;}
 
     }
