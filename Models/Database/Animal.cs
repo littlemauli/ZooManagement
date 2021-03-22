@@ -24,6 +24,11 @@ namespace ZooManagement.Models.Database
         [ForeignKey("Enclosure")]
         public int Enclosure_Id {get; set;}
         public Enclosure Enclosure { get; set; }
+
+        [ForeignKey("Zookeeper")]
+        public int Zookeeper_Id {get; set;}
+        public Zookeeper Zookeeper { get; set; }
+
         
     }
 }

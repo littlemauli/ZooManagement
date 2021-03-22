@@ -116,9 +116,10 @@ namespace ZooManagement.Repositories
                 animal = animal.OrderBy(u => u.AnimalType.TypeName.AsQueryable() );
                 break;
             case "enclosure":
-                animal= animal.OrderBy(u=> u.Enclosure_Id);
-                animal = animal.OrderBy(a => a.AnimalName.AsQueryable());
+                // animal= animal.OrderBy(u=> u.Enclosure_Id);
+                // animal = animal.OrderBy(a => a.AnimalName.AsQueryable());
                             //   .ThenBy(a => a.AnimalName.AsQueryable());
+                animal= animal.OrderBy(u=> u.Enclosure_Id).ThenBy(a => a.AnimalName.AsQueryable());
                 break;
             }
             var animalReturn = animal.Skip((search.Page - 1) * search.PageSize)

@@ -135,6 +135,8 @@ namespace ZooManagement.Data
 
         private static Animal CreateRandomAnimal(int index)
         {
+            Random rnd = new Random();
+
           
             return new Animal
             {
@@ -144,6 +146,7 @@ namespace ZooManagement.Data
                 AquisitionDate = DateTime.Parse(_data[index][3]),
                 DOB = DateTime.Parse(_data[index][4]),
                 Enclosure_Id = Int32.Parse(_data[index][5]),
+                Zookeeper_Id = rnd.Next(1,6),
             };
         }
     }

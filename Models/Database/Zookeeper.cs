@@ -7,19 +7,20 @@ using Newtonsoft.Json;
 
 namespace ZooManagement.Models.Database
 {
-    public class Enclosure
+    public class Zookeeper
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         
-        public string EnclosureName { get; set; }
-        public int EnclosureCapacity { get; set; }
+        public string ZookeeperName { get; set; }
+        public string ZookeeperSex { get; set; }
       
         [JsonIgnore]
-        public ICollection<Animal> Animals { get; set; } 
+        public ICollection<Enclosure> Enclosures { get; set; } 
+
 
         [JsonIgnore]
-        public ICollection<Zookeeper> Zookeepers { get; set; } 
+        public ICollection<Animal> Animals { get; set; } 
     }
 }

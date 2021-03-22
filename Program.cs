@@ -51,6 +51,10 @@ namespace ZooManagement
                 var animalType = SampleAnimalType.GetAnimalTypes();
                 context.AnimalType.AddRange(animalType);
                 context.SaveChanges();
+                
+                var zookeeper = SampleZookeeper.GetZookeeper(context);
+                context.Zookeeper.AddRange(zookeeper);
+                context.SaveChanges();
 
                 var animals = SampleAnimal.GetAnimal();
                 context.Animal.AddRange(animals);
