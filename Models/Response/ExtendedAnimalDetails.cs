@@ -4,7 +4,7 @@ using System;
 
 namespace ZooManagement.Models.Response
 {
-    public class AnimalAllResponse
+    public class ExtendedAnimalDetails
     {
         private readonly Animal _animal;
        
@@ -16,7 +16,7 @@ namespace ZooManagement.Models.Response
         // }
 
         
-        public AnimalAllResponse(Animal animal)
+        public ExtendedAnimalDetails(Animal animal)
         {
             _animal = animal;
         }

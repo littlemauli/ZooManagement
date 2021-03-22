@@ -40,9 +40,6 @@ namespace ZooManagement.Repositories
         public EnclosureListResponse GetEnclosureList() 
         {
         
-            //  AnimalTypeListResponse animalType = new AnimalTypeListResponse();
-            // animalType.AnimalTypeList = _context.AnimalType.Select(a => a.TypeName).ToList();
-            // return animalType;
 
             EnclosureListResponse encList = new EnclosureListResponse();
             

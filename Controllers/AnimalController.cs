@@ -146,10 +146,10 @@ namespace ZooManagement.Controllers
 
 
         [HttpGet("search")]
-        public ActionResult<AnimalAllListResponse> Search([FromQuery] AnimalSearchRequest searchRequest)
+        public ActionResult<SearchResponse> Search([FromQuery] AnimalSearchRequest searchRequest)
         {
             var animals = _animals.Search(searchRequest);
-            AnimalAllListResponse animalSearchResult = new AnimalAllListResponse(animals);
+            SearchResponse animalSearchResult = new SearchResponse(animals);
             return animalSearchResult;
         }
 

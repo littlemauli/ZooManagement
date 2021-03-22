@@ -130,7 +130,7 @@ namespace ZooManagement.Data
          
         public static IEnumerable<Animal> GetAnimal()
         {
-            return Enumerable.Range(0, NumberOfAnimal).Select(CreateRandomAnimal);
+            return Enumerable.Range(0, NumberOfAnimal).Select(x => CreateRandomAnimal(x));
         }
 
         private static Animal CreateRandomAnimal(int index)

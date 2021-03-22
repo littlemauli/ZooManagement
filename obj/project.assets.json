@@ -1457,19 +1457,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\roscha\\.nuget\\packages\\": {}
+    "C:\\Users\\maraza\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\roscha\\training\\ZooManagement\\ZooManagement.csproj",
+      "projectUniqueName": "C:\\training\\ZooManagement\\ZooManagement.csproj",
       "projectName": "ZooManagement",
-      "projectPath": "c:\\Users\\roscha\\training\\ZooManagement\\ZooManagement.csproj",
-      "packagesPath": "C:\\Users\\roscha\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\roscha\\training\\ZooManagement\\obj\\",
+      "projectPath": "C:\\training\\ZooManagement\\ZooManagement.csproj",
+      "packagesPath": "C:\\Users\\maraza\\.nuget\\packages\\",
+      "outputPath": "C:\\training\\ZooManagement\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\roscha\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\maraza\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"

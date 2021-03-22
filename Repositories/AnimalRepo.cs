@@ -49,18 +49,7 @@ namespace ZooManagement.Repositories
 
         public List<Animal> Search(AnimalSearchRequest search)
         {
-            // return _context.Animal
-            //     .Include(c => c.AnimalType)
-            //     .Where(p => search.Filters== null ||
-            //                 (
-            //                     p.AnimalName.ToLower().Contains(search.AnimalName) ||
-            //                     p.AnimalType.Species.ToLower().Contains(search.Species) ||
-            //                     p.AnimalType.AnimalClass.ToLower().Contains(search.AnimalClass) ||
-            //                     p.AnimalType.TypeName.ToLower().Contains(search.TypeName)
-            //                 ))
-            //     .OrderBy(u => u.AnimalType.Species)
-            //     .Skip((search.Page - 1) * search.PageSize)
-            //     .Take(search.PageSize);
+        
 
             var animal = _context.Animal
                 .Include(c => c.AnimalType)
